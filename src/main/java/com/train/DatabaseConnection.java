@@ -14,9 +14,9 @@ public class DatabaseConnection {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("✅ Database connected successfully!");
+            System.out.println(" Database connected successfully!");
         } catch (SQLException e) {
-            System.out.println("❌ Database connection failed: " + e.getMessage());
+            System.out.println(" Database connection failed: " + e.getMessage());
         }
         return conn;
     }
