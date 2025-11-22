@@ -68,7 +68,7 @@ public class TicketGenerator {
 
                 g.drawImage(logo, 25, 15, 60, 60, null);
             } catch (Exception e) {
-                System.out.println("⚠️ Logo not found, skipping logo rendering.");
+                System.out.println("Logo not found, skipping logo rendering.");
             }
 
             // Header text
@@ -139,7 +139,7 @@ public class TicketGenerator {
             Path outputPath = Paths.get("tickets/" + pnrNumber + "_ticket.png");
             ImageIO.write(ticket, "png", outputPath.toFile());
 
-            System.out.println("✅ Ticket generated successfully: " + outputPath);
+            System.out.println("Ticket generated successfully: " + outputPath);
 
         } catch (Exception e) {
             e.printStackTrace();
