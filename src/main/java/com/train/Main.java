@@ -16,7 +16,7 @@ public class Main {
              Connection conn = DatabaseConnection.getConnection()) {
 
             if (conn == null) {
-                System.out.println("❌ Database connection failed!");
+                System.out.println(" Database connection failed!");
                 return;
             }
 
@@ -36,14 +36,14 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("❌ Invalid choice! Exiting...");
+                    System.out.println(" Invalid choice! Exiting...");
                     break;
             }
 
         } catch (SQLException e) {
-            System.out.println("❌ Database error: " + e.getMessage());
+            System.out.println(" Database error: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("❌ Unexpected error: " + e.getMessage());
+            System.out.println(" Unexpected error: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -78,7 +78,7 @@ public class Main {
             try {
                 journeyDate = LocalDate.parse(journeyDateStr);
             } catch (DateTimeParseException dtpe) {
-                System.out.println("❌ Invalid date format. Use YYYY-MM-DD.");
+                System.out.println(" Invalid date format. Use YYYY-MM-DD.");
                 return;
             }
 
@@ -100,9 +100,9 @@ public class Main {
             String fileName = pnr + ".png";
             try {
                 QRCodeGenerator.generateQRCode(qrData, fileName);
-                System.out.println("✅ QR Code generated successfully: " + fileName);
+                System.out.println(" QR Code generated successfully: " + fileName);
             } catch (WriterException | IOException e) {
-                System.out.println("❌ QR generation failed: " + e.getMessage());
+                System.out.println(" QR generation failed: " + e.getMessage());
                 return;
             }
 
@@ -128,7 +128,7 @@ public class Main {
                 ps.executeUpdate();
             }
 
-            System.out.println("✅ Ticket saved to database successfully!");
+            System.out.println("Ticket saved to database successfully!");
 
             // --- Generate Ticket Image ---
             TicketGenerator.generateTicket(
@@ -146,10 +146,10 @@ public class Main {
                     "General"
             );
 
-            System.out.println("✅ Ticket generated successfully!");
+            System.out.println(" Ticket generated successfully!");
 
         } catch (Exception e) {
-            System.out.println("❌ Error while generating ticket: " + e.getMessage());
+            System.out.println(" Error while generating ticket: " + e.getMessage());
             e.printStackTrace();
         }
     }
