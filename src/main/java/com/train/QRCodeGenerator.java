@@ -13,16 +13,16 @@ public class QRCodeGenerator {
         int height = 300;
         String fileType = "png";
 
-        //  Use absolute path for your QR folder
+        // ✅ Use absolute path for your QR folder
         String qrFolder = "C:/Users/dteja/IdeaProjects/Train_Ticket_System/qrcodes/";
         Path path = Paths.get(qrFolder + fileName + ".png");
 
-        // Ensure the directory exists
+        // ✅ Ensure the directory exists
         Files.createDirectories(path.getParent());
 
         BitMatrix matrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, width, height);
         MatrixToImageWriter.writeToPath(matrix, fileType, path);
 
-        System.out.println(" QR Code generated: " + path);
+        System.out.println("✅ QR Code generated: " + path);
     }
 }
