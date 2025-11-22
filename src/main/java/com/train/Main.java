@@ -82,7 +82,7 @@ public class Main {
                 return;
             }
 
-            // --- Generate PNR ---
+            // --- Generatint PNR ---
             String pnr = generatePnr();
 
             // --- QR Code Data ---
