@@ -19,7 +19,7 @@ public class QRScanner {
             Result result = new MultiFormatReader().decode(bitmap);
             return result.getText();
         } catch (IOException | NotFoundException e) {
-            System.out.println(" Error reading QR Code: " + e.getMessage());
+            System.out.println("❌ Error reading QR Code: " + e.getMessage());
             return null;
         }
     }
