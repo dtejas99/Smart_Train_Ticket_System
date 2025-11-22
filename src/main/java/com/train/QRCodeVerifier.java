@@ -14,11 +14,11 @@ import java.time.LocalDate;
 public class QRCodeVerifier {
 
     public static void verifyTicketWithCamera() {
-        System.out.println(" Opening camera... Show your QR code to verify.");
+        System.out.println("📸 Opening camera... Show your QR code to verify.");
 
         Webcam webcam = Webcam.getDefault();
         if (webcam == null) {
-            System.out.println("No webcam detected!");
+            System.out.println("❌ No webcam detected!");
             return;
         }
 
@@ -53,7 +53,7 @@ public class QRCodeVerifier {
                     Result result = new MultiFormatReader().decode(bitmap);
 
                     String qrData = result.getText();
-                    System.out.println(" QR Detected: " + qrData);
+                    System.out.println("🔍 QR Detected: " + qrData);
 
                     // Connect to database
                     String url = "jdbc:mysql://localhost:3306/railway_system";
@@ -61,7 +61,7 @@ public class QRCodeVerifier {
                     String password = "root";
                     Connection conn = DriverManager.getConnection(url, user, password);
 
-                    //  Query by PNR instead of qr_code
+                    // ✅ Query by PNR instead of qr_code
                     String query = "SELECT * FROM tickets WHERE pnr = ?";
                     PreparedStatement stmt = conn.prepareStatement(query);
 
@@ -84,27 +84,27 @@ public class QRCodeVerifier {
                         String seat = rs.getString("seat_number");
                         Date journeyDate = rs.getDate("journey_date");
 
-                        System.out.println(" DB match -> PNR: " + scannedPnr +
+                        System.out.println("🔎 DB match -> PNR: " + scannedPnr +
                                 " | Train: " + trainNo +
                                 " | Name: " + passenger +
                                 " | Seat: " + seat +
                                 " | Status: " + status +
                                 " | Journey: " + journeyDate);
 
-                        //  Validation checks
+                        // ✅ Validation checks
                         boolean statusOk = "valid".equalsIgnoreCase(status);
                         boolean dateOk = !journeyDate.toLocalDate().isBefore(LocalDate.now());
 
                         System.out.println("DEBUG: statusOk=" + statusOk + ", dateOk=" + dateOk);
 
                         if (statusOk && dateOk) {
-                            System.out.println(" VALID TICKET!");
+                            System.out.println("✅ VALID TICKET!");
                         } else {
-                            System.out.println(" INVALID TICKET (Expired or Used)!");
+                            System.out.println("❌ INVALID TICKET (Expired or Used)!");
                         }
 
                     } else {
-                        System.out.println(" INVALID TICKET (Not Found)!");
+                        System.out.println("❌ INVALID TICKET (Not Found)!");
                     }
 
                     verified = true;
@@ -121,7 +121,7 @@ public class QRCodeVerifier {
         } finally {
             webcam.close();
             window.dispose();
-            System.out.println(" Camera closed successfully!");
+            System.out.println("📷 Camera closed successfully!");
         }
     }
 }
