@@ -14,7 +14,7 @@ public class verifyTicket {
         try {
             Webcam webcam = Webcam.getDefault();
             webcam.open();
-            System.out.println("🎥 Camera opened! Show your QR code...");
+            System.out.println("Camera opened! Show your QR code...");
 
             while (true) {
                 BufferedImage image = webcam.getImage();
@@ -26,14 +26,14 @@ public class verifyTicket {
 
                 if (result != null) {
                     String qrCode = result.getText();
-                    System.out.println("🔍 QR Detected: " + qrCode);
+                    System.out.println(" QR Detected: " + qrCode);
                     checkDatabase(qrCode);
                     break;
                 }
             }
             webcam.close();
         } catch (Exception e) {
-            System.out.println("⚠️ QR not detected. Try again...");
+            System.out.println(" QR not detected. Try again...");
         }
     }
 
@@ -50,13 +50,13 @@ public class verifyTicket {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                System.out.println("✅ VALID TICKET FOUND!");
+                System.out.println(" VALID TICKET FOUND!");
                 System.out.println("Name: " + rs.getString("passenger_name"));
                 System.out.println("Train: " + rs.getString("train_number"));
                 System.out.println("Seat: " + rs.getString("seat_number"));
                 System.out.println("Status: " + rs.getString("status"));
             } else {
-                System.out.println("❌ INVALID TICKET!");
+                System.out.println(" INVALID TICKET!");
             }
             conn.close();
         } catch (Exception e) {
